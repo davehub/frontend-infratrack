@@ -1,32 +1,35 @@
 // src/App.jsx
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { AuthProvider, useAuth } from './context/AuthContext'; // Import AuthProvider and useAuth
-import Login from './pages/Login'; // Assuming your Login component is in src/pages/Login.jsx
-import Register from './pages/Register'; // Assuming your Register component is in src/pages/Register.jsx
-import Dashboard from './pages/Dashboard'; // Create a Dashboard component for protected content
-import Home from './pages/Home'; // Create a Home component for public content
+import { AuthProvider, useAuth } from './context/AuthContext';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Dashboard from './pages/Dashboard';
+import Home from './pages/Home';
 
-// A simple PrivateRoute component to protect routes
+// NEW: Create placeholder components for your new pages
+import UserManagementPage from './pages/UserManagementPage'; // For /dashboard/users
+import EquipmentManagementPage from './pages/EquipmentManagementPage'; // For /dashboard/equipment
+import MaintenanceManagementPage from './pages/MaintenanceManagementPage'; // For /dashboard/maintenance
+import AddUserPage from './pages/AddUserPage'; // For /dashboard/add-user
+import ReportsPage from './pages/ReportsPage'; // For /dashboard/reports
+
 const PrivateRoute = ({ children }) => {
   const { currentUser } = useAuth();
-  // If there's no current user, redirect to the login page
   return currentUser ? children : <Navigate to="/login" replace />;
 };
 
 const App = () => {
   return (
-    // Wrap your entire application with AuthProvider to make auth context available
     <AuthProvider>
       <Router>
         <Routes>
           {/* Public Routes */}
-          <Route path="/" element={<Home />} /> {/* Your public home page */}
+          <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
 
           {/* Protected Routes */}
-          {/* Dashboard is only accessible if the user is logged in */}
           <Route
             path="/dashboard"
             element={
@@ -35,10 +38,51 @@ const App = () => {
               </PrivateRoute>
             }
           />
-          {/* Add more protected routes here as needed */}
-          {/* <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>} /> */}
+          {/* NEW PROTECTED ROUTES FOR MANAGEMENT */}
+          <Route
+            path="/dashboard/users"
+            element={
+              <PrivateRoute>
+                {/* You might want a more specific role check here, e.g., <AdminRoute><UserManagementPage /></AdminRoute> */}
+                <UserManagementPage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/dashboard/equipment"
+            element={
+              <PrivateRoute>
+                <EquipmentManagementPage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/dashboard/maintenance"
+            element={
+              <PrivateRoute>
+                <MaintenanceManagementPage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/dashboard/add-user"
+            element={
+              <PrivateRoute>
+                {/* Again, consider an Admin/Manager specific route if needed */}
+                <AddUserPage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/dashboard/reports"
+            element={
+              <PrivateRoute>
+                <ReportsPage />
+              </PrivateRoute>
+            }
+          />
 
-          {/* Catch-all for undefined routes (optional) */}
+          {/* Catch-all for undefined routes */}
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </Router>
