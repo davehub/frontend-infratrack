@@ -127,13 +127,76 @@ const Dashboard = () => {
 
           {/* System Overview Card (for charts) */}
           <Card title="Aperçu du système" className="mt-8 p-6 bg-white shadow-lg rounded-xl">
-            <p className="text-gray-700 text-lg">
-              Intégrer une bibliothèque de graphiques comme Recharts ou Chart.js pour visualiser les données ici.
-            </p>
-            <div className="mt-4 h-48 bg-gray-100 rounded-lg flex items-center justify-center text-gray-500 text-center">
-              [Espace réservé pour le graphique : ex. Répartition des matériaux, Historique des maintenances]
-            </div>
-          </Card>
+  <p className="text-gray-700 text-lg">
+    Intégrer une bibliothèque de graphiques comme Recharts ou Chart.js pour visualiser les données ici.
+  </p>
+  <div className="mt-4 h-auto bg-gray-100 rounded-lg flex flex-col items-center justify-center text-gray-500 text-center p-4">
+    {/* Espace réservé pour le graphique : ex. Répartition des matériaux, Historique des maintenances */}
+
+    <div className="w-full h-64 mb-6">
+      <h3 className="text-lg font-semibold text-gray-800 mb-2">
+        Répartition des matériaux (Exemple de graphique circulaire)
+      </h3>
+      {/* Ici, vous intégreriez votre composant de graphique circulaire */}
+      <div className="bg-white rounded shadow-md p-4 h-full flex items-center justify-center">
+        <p className="text-gray-500">
+          Votre graphique de répartition des matériaux (ex: Pie Chart de Recharts)
+        </p>
+        {/*
+          Exemple de code Recharts pour un Pie Chart (nécessiterait l'importation de Recharts)
+          <ResponsiveContainer width="100%" height="100%">
+            <PieChart>
+              <Pie
+                data={dataMateriaux}
+                cx="50%"
+                cy="50%"
+                outerRadius={80}
+                fill="#8884d8"
+                dataKey="value"
+                label
+              >
+                {dataMateriaux.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                ))}
+              </Pie>
+              <Tooltip />
+              <Legend />
+            </PieChart>
+          </ResponsiveContainer>
+        */}
+      </div>
+    </div>
+
+    <div className="w-full h-64">
+      <h3 className="text-lg font-semibold text-gray-800 mb-2">
+        Historique des maintenances (Exemple de graphique en barres)
+      </h3>
+      {/* Ici, vous intégreriez votre composant de graphique en barres ou en lignes */}
+      <div className="bg-white rounded shadow-md p-4 h-full flex items-center justify-center">
+        <p className="text-gray-500">
+          Votre graphique d'historique des maintenances (ex: Bar Chart de Recharts)
+        </p>
+        {/*
+          Exemple de code Recharts pour un Bar Chart (nécessiterait l'importation de Recharts)
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart
+              data={dataMaintenances}
+              margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+            >
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Bar dataKey="maintenances" fill="#82ca9d" />
+            </BarChart>
+          </ResponsiveContainer>
+        */}
+      </div>
+    </div>
+
+  </div>
+</Card>
         </>
       ) : (
         <Card title="Veuillez vous connecter" className="text-center shadow-lg rounded-xl p-6 bg-white">

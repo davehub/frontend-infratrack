@@ -37,13 +37,110 @@ const ReportsPage = () => {
       </Card>
 
       <Card title="Visualisation des Données" className="shadow-lg rounded-xl bg-white p-6">
-        <p className="text-gray-600">
-          Cet espace est idéal pour intégrer des graphiques dynamiques (barres, lignes, camemberts) utilisant des bibliothèques comme Chart.js ou Recharts pour représenter visuellement vos données.
+  <p className="text-gray-600">
+    Cet espace est idéal pour intégrer des graphiques dynamiques (barres, lignes, camemberts) utilisant des bibliothèques comme Chart.js ou Recharts pour représenter visuellement vos données.
+  </p>
+  <div className="mt-6 p-4 border border-dashed border-gray-300 rounded-lg text-gray-500 flex flex-col space-y-6">
+    {/* Espace réservé pour les graphiques et tableaux de données */}
+
+    {/* Section pour un graphique en barres */}
+    <div className="bg-white p-4 rounded-lg shadow-md">
+      <h3 className="text-lg font-semibold text-gray-800 mb-4">
+        Statistiques Mensuelles (Graphique en Barres)
+      </h3>
+      <div className="h-64 flex items-center justify-center bg-gray-50 rounded">
+        <p className="text-gray-500">
+          Intégrez ici votre composant de graphique en barres (ex: BarChart de Recharts, ou Chart.js Bar)
         </p>
-        <div className="mt-6 p-4 border border-dashed border-gray-300 rounded-lg text-gray-500 text-center h-48 flex items-center justify-center">
-          [Espace réservé pour les graphiques et tableaux de données]
-        </div>
-      </Card>
+        {/*
+          Exemple d'intégration Recharts pour un graphique en barres:
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart data={dataBarres}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Bar dataKey="valeur" fill="#8884d8" />
+            </BarChart>
+          </ResponsiveContainer>
+        */}
+      </div>
+    </div>
+
+    {/* Section pour un graphique circulaire (Camembert) */}
+    <div className="bg-white p-4 rounded-lg shadow-md">
+      <h3 className="text-lg font-semibold text-gray-800 mb-4">
+        Répartition par Catégorie (Graphique Camembert)
+      </h3>
+      <div className="h-64 flex items-center justify-center bg-gray-50 rounded">
+        <p className="text-gray-500">
+          Intégrez ici votre composant de graphique circulaire (ex: PieChart de Recharts, ou Chart.js Doughnut)
+        </p>
+        {/*
+          Exemple d'intégration Recharts pour un graphique circulaire:
+          <ResponsiveContainer width="100%" height="100%">
+            <PieChart>
+              <Pie data={dataCamembert} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={80} fill="#82ca9d" label />
+              <Tooltip />
+              <Legend />
+            </PieChart>
+          </ResponsiveContainer>
+        */}
+      </div>
+    </div>
+
+    {/* Section pour un tableau de données */}
+    <div className="bg-white p-4 rounded-lg shadow-md">
+      <h3 className="text-lg font-semibold text-gray-800 mb-4">
+        Détails des Données
+      </h3>
+      <div className="overflow-x-auto">
+        <table className="min-w-full leading-normal">
+          <thead>
+            <tr>
+              <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                Libellé
+              </th>
+              <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                Valeur
+              </th>
+              <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                Statut
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                Donnée A
+              </td>
+              <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                120
+              </td>
+              <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                Actif
+              </td>
+            </tr>
+            <tr>
+              <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                Donnée B
+              </td>
+              <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                75
+              </td>
+              <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                En attente
+              </td>
+            </tr>
+            {/* Ajoutez d'autres lignes de données ici */}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</Card>
 
       <div className="mt-10 text-center">
         <Button

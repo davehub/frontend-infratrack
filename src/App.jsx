@@ -8,11 +8,11 @@ import Dashboard from './pages/Dashboard';
 import Home from './pages/Home';
 
 // NEW: Create placeholder components for your new pages
-import UserManagementPage from './pages/UserManagementPage'; // For /dashboard/users
-import EquipmentManagementPage from './pages/EquipmentManagementPage'; // For /dashboard/equipment
-import MaintenanceManagementPage from './pages/MaintenanceManagementPage'; // For /dashboard/maintenance
-import AddUserPage from './pages/AddUserPage'; // For /dashboard/add-user
+import MaterialManagement from './pages/MaterialManagement'; // For /materialManagement
 import ReportsPage from './pages/ReportsPage'; // For /dashboard/reports
+import UserManagement from './pages/UserManagement';
+import RoleManagement from './pages/RoleManagement';
+
 
 const PrivateRoute = ({ children }) => {
   const { currentUser } = useAuth();
@@ -40,39 +40,31 @@ const App = () => {
           />
           {/* NEW PROTECTED ROUTES FOR MANAGEMENT */}
           <Route
-            path="/dashboard/users"
+            path="/user"
             element={
               <PrivateRoute>
-                {/* You might want a more specific role check here, e.g., <AdminRoute><UserManagementPage /></AdminRoute> */}
-                <UserManagementPage />
+                <UserManagement />
               </PrivateRoute>
             }
           />
           <Route
-            path="/dashboard/equipment"
+            path="/roleManagement"
             element={
               <PrivateRoute>
-                <EquipmentManagementPage />
+                <RoleManagement />
               </PrivateRoute>
             }
           />
+          
           <Route
-            path="/dashboard/maintenance"
+            path="/materialManagement"
             element={
               <PrivateRoute>
-                <MaintenanceManagementPage />
+                <MaterialManagement />
               </PrivateRoute>
             }
           />
-          <Route
-            path="/dashboard/add-user"
-            element={
-              <PrivateRoute>
-                {/* Again, consider an Admin/Manager specific route if needed */}
-                <AddUserPage />
-              </PrivateRoute>
-            }
-          />
+     
           <Route
             path="/dashboard/reports"
             element={
